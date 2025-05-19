@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Продукт: {{ product.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h2 class="text-center my-4">{{ product.name }}</h2>
+  
+  <div class="row">
+    <div class="col-6">
+      {% include 'components/_product_slider.html' %}
+    </div>
+    <div class="col-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+            <span>Категория:</span>
+            <a class="text-decoration-none" href="{{ product.category.get_absolute_url }}"><b>{{ product.category.name }}</b></a>
+        </li>
+        <li class="list-group-item">
+            <span>Добавлено в:</span>
+            <b>{{ product.created_at }}</b>
+        </li>
+        <li class="list-group-item">
+            <span>Цена:</span>
+            <b>{{ product.price }}</b>
+        </li>
+    </ul>
+      <p class="mt-5">{{ product.description }}</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

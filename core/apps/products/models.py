@@ -1,10 +1,11 @@
 from django.db import models
+from django.urls import reverse
 
 from core.apps.common.models import BaseModel
 
 
-def show_product_image_path(obj: "Product", filename: str) -> str:
-    return f"products/{obj.pk}/previews/{filename}"
+def show_product_image_path(instance, filename: str) -> str:
+    return f"products/{instance.pk}/previews/{filename}"
 
 
 class Product(BaseModel):
@@ -28,13 +29,21 @@ class Product(BaseModel):
     def __str__(self) -> str:
         return self.name
 
+    def get_image(self):
+        if not self.image:
+            return 'https://stilsoft.ru/images/catalog/noup.png'
+        return self.image.url
+
+    def get_absolute_url(self):
+        return reverse('product_detail_page', kwargs={'product_id': self.pk})
+
     class Meta:
         verbose_name = "Продукт"
         verbose_name_plural = "Продукты"
 
 
-def show_product_image_upload_path(obj: Product, filename: str) -> str:
-    return f"products/{obj.pk}/gallery/{filename}"
+def show_product_image_upload_path(instance, filename: str) -> str:
+    return f"products/{instance.product.pk}/gallery/{filename}"
 
 
 class ProductImage(BaseModel):

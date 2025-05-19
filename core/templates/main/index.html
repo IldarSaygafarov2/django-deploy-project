@@ -6,8 +6,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1>home page</h1>
+    <div class="container">
+        <h2 class="text-center mt-3 mb-4">All products</h2>
 
-
-
+        <div class="row">
+            {% for product in products %}
+            <div class="col-4">
+                {% include 'components/_product_card.html' %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

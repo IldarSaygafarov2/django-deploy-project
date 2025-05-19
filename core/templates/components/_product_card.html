@@ -1,0 +1,26 @@
+<div class="card h-100">
+
+    <img src="{{ product.get_image }}" class="card-img-top" alt="..." height="350">
+
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <span>Категория:</span>
+            <a class="text-decoration-none" href="{{ product.category.get_absolute_url }}"><b>{{ product.category.name }}</b></a>
+        </li>
+        <li class="list-group-item">
+            <span>Добавлено в:</span>
+            <b>{{ product.created_at }}</b>
+        </li>
+        <li class="list-group-item">
+            <span>Цена:</span>
+            <b>{{ product.price }}</b>
+        </li>
+    </ul>
+    <div class="card-body">
+        <a href="{{ product.get_absolute_url }}" class="card-link">Подробнее</a>
+    </div>
+</div>
