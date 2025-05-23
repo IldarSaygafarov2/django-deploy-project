@@ -1,6 +1,7 @@
 from typing import Optional
 
 from ninja import Schema
+
 from core.api.core.schemas.category.dto import CategorySchema
 
 
